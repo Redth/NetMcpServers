@@ -5,13 +5,42 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<PackAsTool>true</PackAsTool>
+    <ToolCommandName>mcp-server-nuget</ToolCommandName>
   </PropertyGroup>
 
+  <PropertyGroup>
+		<PackageId>Mcp.Server.NuGet</PackageId>
+		<Title>NuGet MCP (Model Context Protocol) Server</Title>
+		<PackageDescription>NuGet MCP (Model Context Protocol) Server including a Search tool and Package/Package Contents Resources</PackageDescription>
+		<Authors>Redth</Authors>
+		<Owners>Redth</Owners>
+		<Copyright>Copyright © Redth</Copyright>
+		<PackageProjectUrl>https://github.com/redth/NetMcpServers</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/redth/NetMcpServers</RepositoryUrl>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<DebugType>portable</DebugType>
+		<!--<PackAsToolShimRuntimeIdentifiers>win-x64;win-x86;win-arm64;osx-x64;osx-arm64;linux-x64;linux-arm64</PackAsToolShimRuntimeIdentifiers>-->
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true' Or '$(TF_BUILD)' == 'true'">
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+	</PropertyGroup>
+
+
   <ItemGroup>
-    <PackageReference Include="ModelContextProtocol" Version="0.1.0-preview-*" />
+    
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
+    
+    <PackageReference Include="ModelContextProtocol" Version="0.1.0-preview.1.25171.12" />
+    
+    <PackageReference Include="Nerdbank.GitVersioning" Version="3.7.115">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="NuGet.Protocol" Version="6.13.2" />
-    <PackageReference Include="System.Net.ServerSentEvents" VersionOverride="10.0.0-preview.1.25080.5" />
   </ItemGroup>
 
 </Project>
