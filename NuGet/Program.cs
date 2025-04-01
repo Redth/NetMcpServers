@@ -12,7 +12,7 @@ builder.Services.AddMcpServer()
     .WithReadResourceHandler(NuGetResources.ReadResourceHandler)
     //.WithHttpListenerSseServerTransport()
 	.WithStdioServerTransport()
-    .WithTools();
+    .WithTools<NuGetTools>();
 
 builder.Logging.ClearProviders();
 

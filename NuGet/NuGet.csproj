@@ -8,6 +8,7 @@
 		<PackAsTool>true</PackAsTool>
 		<RollForward>Major</RollForward>
 		<ToolCommandName>mcp-server-nuget</ToolCommandName>
+		<!--<PublishAot>True</PublishAot>-->
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -18,7 +19,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
-		<PackageReference Include="ModelContextProtocol" Version="0.1.0-preview.1.25171.12" />
+		<PackageReference Include="ModelContextProtocol" Version="0.1.0-preview.2" />
 		<PackageReference Include="NuGet.Protocol" Version="6.13.2" />
 	</ItemGroup>
 
