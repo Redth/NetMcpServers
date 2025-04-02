@@ -89,7 +89,7 @@ public static class NuGetResources
 		{
 			Contents =
 			[
-				new() {
+				new BlobResourceContents() {
 					Uri = uri.ToString(),
 					MimeType = mimeType,
 					Blob = blob

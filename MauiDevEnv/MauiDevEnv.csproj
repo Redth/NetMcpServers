@@ -2,7 +2,7 @@
 
     <PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFrameworks>net6.0;net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<PackAsTool>true</PackAsTool>
@@ -17,11 +17,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Deployment.DotNet.Releases" Version="1.0.1" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.3" />
-		<PackageReference Include="ModelContextProtocol" Version="0.1.0-preview.1.25171.12" />
-		<PackageReference Include="NuGet.Protocol" Version="6.13.2" />
-		<PackageReference Include="AndroidSdk" Version="0.19.0" />
+		<PackageReference Include="Microsoft.Deployment.DotNet.Releases" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		<PackageReference Include="ModelContextProtocol" />
+		<PackageReference Include="NuGet.Protocol" />
+		<PackageReference Include="AndroidSdk" />
 	</ItemGroup>
 
 </Project>

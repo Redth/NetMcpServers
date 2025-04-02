@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ModelContextProtocol;
 using NetMcp.NuGet;
@@ -12,7 +13,7 @@ builder.Services.AddMcpServer()
     .WithReadResourceHandler(NuGetResources.ReadResourceHandler)
     //.WithHttpListenerSseServerTransport()
 	.WithStdioServerTransport()
-    .WithTools();
+    .WithToolsFromAssembly();
 
 builder.Logging.ClearProviders();
 

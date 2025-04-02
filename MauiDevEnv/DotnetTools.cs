@@ -7,10 +7,10 @@ using System.Text.RegularExpressions;
 
 namespace MauiDevEnv;
 
-[McpToolType]
+[McpServerToolType]
 public partial class DotnetTools
 {
-    [McpTool("dotnet_info")]
+    [McpServerTool(Name = "dotnet_info")]
     [Description("Gets information about the installed .NET SDKs, runtimes, workloads, etc.")]
     public static async Task<string> GetDotNetInfo()
     {
@@ -34,7 +34,7 @@ public partial class DotnetTools
 
         var releaseInfo = await GetDotNetReleasesInfo();
 
-        info.LatestAvailableSdkVersion = releaseInfo.ToString();
+        info.LatestAvailableSdkVersion = releaseInfo?.ToString() ?? string.Empty;
 
 		return JsonSerializer.Serialize(info, new JsonSerializerOptions
         {
@@ -46,7 +46,7 @@ public partial class DotnetTools
         });
     }
 
-    internal static async Task<ReleaseVersion> GetDotNetReleasesInfo()
+    internal static async Task<ReleaseVersion?> GetDotNetReleasesInfo()
     {
         
         var products = await ProductCollection.GetAsync();
@@ -55,7 +55,7 @@ public partial class DotnetTools
             .OrderByDescending(p => p.LatestSdkVersion)
             .FirstOrDefault();
 
-        return latest.LatestSdkVersion;
+        return latest?.LatestSdkVersion;
     }
 
     public static DotnetInfo ParseDotnetInfoOutput(string output)

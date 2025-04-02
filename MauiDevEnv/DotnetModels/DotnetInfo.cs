@@ -7,7 +7,7 @@ public partial class DotnetTools
 	public class DotnetInfo
     {
         [JsonPropertyName("latest_available_sdk_version")]
-        public string LatestAvailableSdkVersion { get; set; }
+        public string? LatestAvailableSdkVersion { get; set; }
 
 		[JsonPropertyName("sdk_info")]
 		public SdkInfo Sdk { get; set; } = new SdkInfo();

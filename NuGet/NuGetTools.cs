@@ -8,7 +8,7 @@ using ModelContextProtocol.Server;
 
 namespace NetMcp.NuGet;
 
-[McpToolType]
+[McpServerToolType]
 public partial class NuGetTools
 {
     /// <summary>
@@ -16,7 +16,7 @@ public partial class NuGetTools
     /// </summary>
     public const string DefaultNuGetSource = "https://api.nuget.org/v3/index.json";
 
-    [McpTool("nuget_search")]
+    [McpServerTool(Name ="nuget_search")]
     [Description(NuGetSearchDescription)]
     public static async Task<string> SearchPackagesAsync(
         [Description(NuGetSearchQueryDescription)]

@@ -4,14 +4,16 @@ using System.Text;
 
 namespace MauiDevEnv;
 
-[McpToolType]
+[McpServerToolType]
 public class AndroidSdkTools
 {
     //[McpTool("find_android_sdk")]
     [Description("Returns the best suitable Android SDK path for the current system.")]
     public static string? FindAndroidSdk()
     {
+#pragma warning disable IDE0017 
         var m = new AndroidSdk.SdkManager();
+#pragma warning restore IDE0017 
         m.SkipVersionCheck = true;
         return m.AndroidSdkHome?.FullName;
     }
@@ -32,7 +34,9 @@ public class AndroidSdkTools
         [Description("Android SDK Home path. If not provided, the default Android SDK path will be used.")]
         string? android_sdk_home = null)
     {
+#pragma warning disable CS0612 
         var m = new AndroidSdk.SdkManager(android_sdk_home);
+#pragma warning restore CS0612 
         m.SkipVersionCheck = true;
         var packages = m.List();
         if (packages == null)
@@ -49,20 +53,22 @@ public class AndroidSdkTools
         return sb.ToString();
     }
 
-    [McpTool("android_sdk_accept_licenses")]
+    [McpServerTool(Name = "android_sdk_accept_licenses")]
     [Description("Accepts any Android SDK licenses that are not already accepted.  Returns a bool value to indicate if any licenses were accepted.")]
     public static bool AndroidSdkAcceptLicenses(
         [Description("Android SDK Home path. If not provided, the default Android SDK path will be used.")]
         string? android_sdk_home = null)
     {
+#pragma warning disable CS0612 
         var m = new AndroidSdk.SdkManager(android_sdk_home);
+#pragma warning restore CS0612 
         m.SkipVersionCheck = true;
 
         return m.AcceptLicenses();
     }
 
 
-    [McpTool("android_sdk_install_package")]
+    [McpServerTool(Name = "android_sdk_install_package")]
     [Description("Installs the specified Android SDK package.  Returns a bool value to indicate if the installation was successful.")]
     public static bool AndroidSdkInstallPackage(
         [Description("Android SDK package path / ID. (e.g., 'platform-tools' or 'platforms;android-33').")]
@@ -70,13 +76,15 @@ public class AndroidSdkTools
         [Description("Android SDK Home path. If not provided, the default Android SDK path will be used.")]
         string? android_sdk_home = null)
     {
+#pragma warning disable CS0612 
         var m = new AndroidSdk.SdkManager(android_sdk_home);
+#pragma warning restore CS0612 
         m.SkipVersionCheck = true;
 
         return m.Install(package_path_or_id);
     }
 
-    [McpTool("android_sdk_uninstall_package")]
+    [McpServerTool(Name = "android_sdk_uninstall_package")]
     [Description("Uninstalls the specified Android SDK package.  Returns a bool value to indicate if the installation was successful.")]
     public static bool AndroidSdkUninstallPackage(
         [Description("Android SDK package path / ID. (e.g., 'platform-tools' or 'platforms;android-33').")]
@@ -84,26 +92,30 @@ public class AndroidSdkTools
         [Description("Android SDK Home path. If not provided, the default Android SDK path will be used.")]
         string? android_sdk_home = null)
     {
+#pragma warning disable CS0612
         var m = new AndroidSdk.SdkManager(android_sdk_home);
+#pragma warning restore CS0612
         m.SkipVersionCheck = true;
 
         return m.Uninstall(package_path_or_id);
     }
 
-    [McpTool("android_sdk_download")]
+    [McpServerTool(Name = "android_sdk_download")]
     [Description("Uninstalls the specified Android SDK package.  Returns a bool value to indicate if the installation was successful.")]
     public static async Task<bool> DownloadAndroidSdk(
         [Description("Android SDK Home path to download and extract the SDK into.")]
         string android_sdk_home)
     {
+#pragma warning disable IDE0017 
         AndroidSdk.SdkManager m = new AndroidSdk.SdkManager();
+#pragma warning restore IDE0017 
         m.SkipVersionCheck = true;
         await m.DownloadSdk(new DirectoryInfo(android_sdk_home));
 
         return true;
     }
 
-    [McpTool("get_android_environment_info")]
+    [McpServerTool(Name = "get_android_environment_info")]
     [Description("Returns combined information about Android SDK path, Java JDK path, and installed Android SDK packages in JSON format.")]
     public static string GetAndroidEnvironmentInfo()
     {
