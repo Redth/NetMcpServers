@@ -26,11 +26,46 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Deployment.DotNet.Releases" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" />
-		<PackageReference Include="ModelContextProtocol" />
-		<PackageReference Include="NuGet.Protocol" />
-		<PackageReference Include="AndroidSdk" />
+		<None Include=".mcp\server.json" Pack="true" PackagePath="/.mcp/" />
+		<None Include="README.md" Pack="true" PackagePath="/" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Deployment.DotNet.Releases" Version="1.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.1" />
+		<PackageReference Include="ModelContextProtocol" Version="0.5.0-preview.1" />
+		<PackageReference Include="NuGet.Protocol" Version="7.0.1" />
+		<PackageReference Include="AndroidSdk" Version="0.26.0" />
+	</ItemGroup>
+
+	<!-- Update server.json with Nerdbank.GitVersioning calculated version before packing -->
+	<Target Name="UpdateServerJsonVersion" BeforeTargets="Pack" DependsOnTargets="GetBuildVersion">
+		<PropertyGroup>
+			<ServerJsonPath>$(MSBuildProjectDirectory)/.mcp/server.json</ServerJsonPath>
+		</PropertyGroup>
+		<UpdateServerJsonVersionTask
+			ServerJsonPath="$(ServerJsonPath)"
+			Version="$(Version)" />
+	</Target>
+
+	<UsingTask TaskName="UpdateServerJsonVersionTask" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+		<ParameterGroup>
+			<ServerJsonPath ParameterType="System.String" Required="true" />
+			<Version ParameterType="System.String" Required="true" />
+		</ParameterGroup>
+		<Task>
+			<Using Namespace="System.IO" />
+			<Using Namespace="System.Text.RegularExpressions" />
+			<Code Type="Fragment" Language="cs">
+<![CDATA[
+var json = File.ReadAllText(ServerJsonPath);
+// Update version fields - matches "version": "..." pattern
+json = Regex.Replace(json, @"""version""\s*:\s*""[^""]+""", "\"version\": \"" + Version + "\"");
+File.WriteAllText(ServerJsonPath, json);
+Log.LogMessage(MessageImportance.High, $"Updated server.json version to {Version}");
+]]>
+			</Code>
+		</Task>
+	</UsingTask>
 
 </Project>

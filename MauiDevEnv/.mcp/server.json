@@ -2,12 +2,12 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "codes.redth.mcp/mcp-mauidevenv",
   "description": ".NET MAUI Developer Environment MCP Server - Manage .NET SDKs and Android SDK",
-  "version": "1.0.0",
+  "version": "0.0.0-placeholder",
   "packages": [
     {
       "registryType": "nuget",
       "identifier": "Mcp.Server.MauiDevEnv",
-      "version": "0.1.1",
+      "version": "0.0.0-placeholder",
       "runtimeHint": "dnx",
       "runtimeArguments": [
         {
