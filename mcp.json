@@ -1,0 +1,15 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/mcp.json",
+  "mcpServers": {
+    "mauidevenv": {
+      "type": "stdio",
+      "command": "dnx",
+      "args": [
+        "Mcp.Server.MauiDevEnv",
+        "--yes"
+      ],
+      "description": ".NET MAUI Developer Environment MCP Server - Manage .NET SDKs and Android SDK",
+      "env": {}
+    }
+  }
+}
