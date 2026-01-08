@@ -23,7 +23,7 @@ jobs:
       with:
         dotnet-version: 10.0.x
     - name: 📦 Build + Pack
-      run: dotnet pack --configuration Release NetMcp.sln    
+      run: dotnet pack --configuration Release NetMcp.slnx    
     - name: ⬆️ Packages
       uses: actions/upload-artifact@v6
       with:
